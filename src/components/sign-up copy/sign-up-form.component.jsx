@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
-
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
+import FormInput from "../form-input/form-input.component.jsx";
+import Button from "../buttons/button.component";
 import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
@@ -17,19 +16,19 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
+function SignUpForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  console.log(formFields);
 
-  const resetFormFields = () => {
+  function resetFormFields() {
     setFormFields(defaultFormFields);
-  };
+  }
 
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-
     if (password !== confirmPassword) {
-      alert("passwords do not match");
+      alert("Passwords do not match");
       return;
     }
 
@@ -38,23 +37,21 @@ const SignUpForm = () => {
         email,
         password
       );
-
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
-      } else {
-        console.log("user creation encountered an error", error);
       }
+      console.log(error);
     }
-  };
+  }
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
-  };
+  }
 
   return (
     <div className="sign-up-container">
@@ -89,17 +86,18 @@ const SignUpForm = () => {
         />
 
         <FormInput
-          label="Confirm Password"
+          label="ConfirmPassword"
           type="password"
           required
           onChange={handleChange}
           name="confirmPassword"
           value={confirmPassword}
         />
+
         <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
-};
+}
 
 export default SignUpForm;
