@@ -1,14 +1,24 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment } from "react";
-import { ReactComponent as LogoUnlimited } from "../../assets/logo-unlimited.svg";
 import "./navigation.styles.scss";
+import logo from "../../assets/logo-unlimited.png";
+
+import { UserContext } from "../../context/user.context";
+import { useContext } from "react";
 
 function Navigation() {
+  const {currentUser} = useContext(UserContext);
+  console.log(currentUser);
+  
   return (
     <Fragment>
       <div className="navigation">
         <Link className="logo-container" to="/home">
-          <LogoUnlimited className="logo" />
+          <img
+            src={logo}
+            className="logo"
+            alt="SW shop logo"
+          />
         </Link>
 
         <div className="nav-links-container">
