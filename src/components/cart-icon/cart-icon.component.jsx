@@ -4,12 +4,17 @@ import { useContext } from "react";
 import { CartContext } from "../../context/cart.context";
 
 const CartIcon = () => {
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
   const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
+  // let cartCount = 0;
+  // for (let i = 0; i < cartItems.length; i++) {
+  //   cartCount = cartCount + cartItems[i].quantity;
+  // }
+
   return (
     <div className="cart-icon-container" onClick={toggleIsCartOpen}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{cartCount}</span>
     </div>
   );
 };
