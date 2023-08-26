@@ -1,13 +1,12 @@
 import CategoryItem from "../category-item/category-item.component.jsx";
-import "./categories.styles.scss";
+import { CategoriesContainer } from "./categories.styles.jsx";
 
-export default function CategoriesList ({ categories }) {
+export default function CategoriesList({ categories }) {
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}
-    </div>
+    </CategoriesContainer>
   );
 }
-
