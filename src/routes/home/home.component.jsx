@@ -34,6 +34,7 @@ function Home() {
       route: "shop/mens",
     },
   ];
+  
   return (
     <div>
       <Directory categories={categories} />
