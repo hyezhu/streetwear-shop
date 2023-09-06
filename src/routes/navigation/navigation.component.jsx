@@ -24,7 +24,7 @@ const Navigation = () => {
   return (
     <Fragment>
       <NavigationContainer>
-        <LogoContainer to="/home">
+        <LogoContainer to="/">
           <img src={logo} alt="site logo" />
         </LogoContainer>
         <NavLinks>

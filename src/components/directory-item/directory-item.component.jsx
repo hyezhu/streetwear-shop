@@ -20,7 +20,7 @@ const DirectoryItem = ({ category }) => {
         <p>Shop Now</p>
       </Body>
     </DirectoryItemContainer>
-  ); 
+  );
 };
 
 export default DirectoryItem;
